@@ -1,7 +1,8 @@
 # Copyright (c) 2017-present, Facebook, Inc.
 # All rights reserved.
 #
-lgs="ar bg bn ca cs da de el fa fi he hi hr hu id it ko lt lv mk nl no pt ro sq sv ta tr uk en"
+lgs="ar bg bn ca cs da de el fa fi he hi hr hu id"
+# lgs="it ko lt lv mk nl no pt ro sq sv ta tr uk"
 
 mkdir -p vectors
 for lg in ${lgs}

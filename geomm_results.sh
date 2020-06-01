@@ -2,7 +2,8 @@
 EMBEDDINGS="./muse_data/vectors"
 DICTIONARIES="./muse_data/crosslingual/dictionaries"
 echo "Table 1 Results"
-lgs="ar bg bn ca cs da de el fa fi he hi hr hu id it ko lt lv mk nl no pt ro sq sv ta tr uk en"
+lgs="ar bg bn ca cs da de el fa fi he hi hr hu id"
+# lgs="it ko lt lv mk nl no pt ro sq sv ta tr uk"
 
 for lg in ${lgs}
 do
