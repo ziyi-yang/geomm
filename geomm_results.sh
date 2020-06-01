@@ -2,8 +2,15 @@
 EMBEDDINGS="./muse_data/vectors"
 DICTIONARIES="./muse_data/crosslingual/dictionaries"
 echo "Table 1 Results"
-echo "En-Es"
-python geomm.py "$EMBEDDINGS/wiki.en.vec" "$EMBEDDINGS/wiki.vi.vec" -dtrain "$DICTIONARIES/en-vi.0-5000.txt" -dtest "$DICTIONARIES/en-vi.5000-6500.txt" --normalize unit center  --max_opt_iter 150 --l2_reg 1e3 --max_vocab 200000 --normalize_eval
+lgs="ar bg bn ca cs da de el fa fi he hi hr hu id it ko lt lv mk nl no pt ro sq sv ta tr uk en"
+
+for lg in ${lgs}
+do
+  echo $lg
+  python geomm_optimized.py "$EMBEDDINGS/wiki.en.vec" "$EMBEDDINGS/wiki.$lg.vec" -dtrain "$DICTIONARIES/en-$lg.0-5000.txt" -dtest "$DICTIONARIES/en-$lg.5000-6500.txt" --normalize unit center  --max_opt_iter 150 --l2_reg 1e3 --max_vocab 200000 --normalize_eval
+  python geomm_optimized.py "$EMBEDDINGS/wiki.$lg.vec" "$EMBEDDINGS/wiki.en.vec" -dtrain "$DICTIONARIES/$lg-en.0-5000.txt" -dtest "$DICTIONARIES/$lg-en.5000-6500.txt" --normalize unit center  --max_opt_iter 150 --l2_reg 1e2 --max_vocab 200000 --normalize_eval
+done
+
 # echo "Es-En"
 # python geomm.py "$EMBEDDINGS/wiki.vi.vec" "$EMBEDDINGS/wiki.en.vec" -dtrain "$DICTIONARIES/vi-en.0-5000.txt" -dtest "$DICTIONARIES/vi-en.5000-6500.txt" --normalize unit center  --max_opt_iter 150 --l2_reg 1e2 --max_vocab 200000 --normalize_eval
 # echo "En-Th"

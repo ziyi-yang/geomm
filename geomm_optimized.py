@@ -381,7 +381,14 @@ def main():
 
     mean/=len(src)
     accuracy10 = mean
-    print('Coverage:{0:7.2%}  Accuracy:{1:7.2%}  Accuracy(Top 5):{2:7.2%}  Accuracy(Top 10):{3:7.2%}'.format(coverage, accuracy, accuracy5, accuracy10))
+    message = src_input.split(".")[-2] + "-->" + trg_input.split(".")[-2] + ":"
+        'Coverage:{0:7.2%}  Accuracy:{1:7.2%}'.format(coverage, accuracy)
+    # message = src_input.split(".")[-2] + "-->" + trg_input.split(".")[-2] + ":"
+    #    'Coverage:{0:7.2%}  Accuracy:{1:7.2%}  Accuracy(Top 5):{2:7.2%}  Accuracy(Top 10):{3:7.2%}'.format(coverage, accuracy, accuracy5, accuracy10)
+
+    print(message)
+    with open("results.txt", "a") as fh:
+        fh.write(message)
 
 if __name__ == '__main__':
     main()

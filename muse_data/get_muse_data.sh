@@ -1,24 +1,19 @@
 # Copyright (c) 2017-present, Facebook, Inc.
 # All rights reserved.
 #
+lgs="ar bg bn ca cs da de el fa fi he hi hr hu id it ko lt lv mk nl no pt ro sq sv ta tr uk en"
 
 mkdir -p vectors
-curl -Lo vectors/wiki.en.vec https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.en.vec
-curl -Lo vectors/wiki.vi.vec https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.vi.vec
-curl -Lo vectors/wiki.th.vec https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.th.vec
-curl -Lo vectors/wiki.ti.vec https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.ti.vec
-curl -Lo vectors/wiki.ms.vec https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.ms.vec
-curl -Lo vectors/wiki.si.vec https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.si.vec
-curl -Lo vectors/wiki.bs.vec https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.bs.vec
-curl -Lo vectors/wiki.af.vec https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.af.vec
-
+for lg in ${lgs}
+do
+  curl -Lo vectors/wiki.$lg.vec https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.$lg.vec
+done
 
 aws_path='https://dl.fbaipublicfiles.com/arrival'
 
 mkdir crosslingual
 
 ## Downloading en-{} or {}-en dictionaries
-lgs="vi th ti ms af bs si"
 mkdir -p crosslingual/dictionaries/
 for lg in ${lgs}
 do
